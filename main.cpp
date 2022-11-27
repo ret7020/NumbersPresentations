@@ -4,9 +4,9 @@
 typedef long long ll;
 using namespace std;
 
-int dec2bin(int num)
+ll dec2bin(ll num)
 {
-    int bin = 0, k = 1;
+    ll bin = 0, k = 1;
     while (num)
     {
         bin += (num % 2) * k;
@@ -18,7 +18,8 @@ int dec2bin(int num)
 
 int main(){
     // CONFIG PART
-    bool DEBUG = true;
+    bool DEBUG = false;
+    int COLORS_SYSTEM = 0;  // 0 - BASH(LINUX THE BEST); 1 - CMD(WINDOWS); 2 - DISABLED
     //
     ll number, base_size = 8;
     cout << "Enter number: ";
@@ -33,10 +34,16 @@ int main(){
         if (DEBUG) cout << "Possitive number";
         res += "0";
         string bin_repr = to_string(res_bin);
-        ll shift_size = bin_repr.length() - 8 + 1;
-        cout << "Shift number for " << shift_size;
-        if (shift_size == 0){ // No shift
+        ll shift_size = bin_repr.length() - base_size + 1;
+        if (DEBUG) cout << "Shift number for " << shift_size << "\n";
+        if (shift_size == 0) // No shift
             res += bin_repr;
+        else if (shift_size < 0) // Inject zeros
+            res += string(abs(shift_size), '0') + bin_repr;
+        else if (shift_size > 0){
+            cout << shift_size + 1;
+            res += bin_repr.substr(shift_size);
+            cout << "[WARN] OVERFLOW; SOME NUMBERS SHIFTED\n";
         }
         cout << "Direct code: " << res;
     }else{
