@@ -45,10 +45,8 @@ int main()
         string odin = process_binary_number( "1", size, 1, 1);
 		string extra_code_final = extra_code_gen(extra_code_format, odin, size);
 		int length2 = extra_code_final.size();
-	    if (size - length2 < 0) {
-			extra_code_final = extra_code_final.erase(0, length2 - size);
-		}
-		cout << "Extra code: " << generate_colored(extra_code_final, 2) << endl;
+	    if (size - length2 < 0) extra_code_final = extra_code_final.erase(0, length2 - size);
+		cout << generate_colored("Extra code: ", 2) << extra_code_final << endl;
 
     }
 }
