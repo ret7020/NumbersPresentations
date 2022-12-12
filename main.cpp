@@ -1,52 +1,54 @@
 #include <iostream>
 #include <string>
-
-typedef long long ll;
+#include "utils.h"
+#include "converters.h"
 using namespace std;
 
-ll dec2bin(ll num)
+int main()
 {
-    ll bin = 0, k = 1;
-    while (num)
-    {
-        bin += (num % 2) * k;
-        k *= 10;
-        num /= 2;
-    }
-    return bin;
-}
-
-int main(){
-    // CONFIG PART
-    bool DEBUG = false;
-    int COLORS_SYSTEM = 0;  // 0 - BASH(LINUX THE BEST); 1 - CMD(WINDOWS); 2 - DISABLED
-    //
-    ll number, base_size = 8;
-    cout << "Enter number: ";
+    int number, size;
+    string binary = "";
+    int number_processing_mode = 0;
+    cout << generate_colored("Input number: ", 1);
     cin >> number;
-    cout << "Enter size: ";
-    cin >> base_size;
-    if(DEBUG) cout << "Storing " << number << "in size " << base_size << "\n";
-    ll res_bin =  dec2bin(number);
-    if (DEBUG) cout << "Binary repr: " << res_bin << "\n";
-    string res = "";
-    if (number > 0){
-        if (DEBUG) cout << "Possitive number";
-        res += "0";
-        string bin_repr = to_string(res_bin);
-        ll shift_size = bin_repr.length() - base_size + 1;
-        if (DEBUG) cout << "Shift number for " << shift_size << "\n";
-        if (shift_size == 0) // No shift
-            res += bin_repr;
-        else if (shift_size < 0) // Inject zeros
-            res += string(abs(shift_size), '0') + bin_repr;
-        else if (shift_size > 0){
-            cout << shift_size + 1;
-            res += bin_repr.substr(shift_size);
-            cout << "[WARN] OVERFLOW; SOME NUMBERS SHIFTED\n";
+    cout << generate_colored("Saved size: ", 1);
+    cin >> size;
+    if (number < 0) binary = to_binary_string(-number);
+    else binary = to_binary_string(number);
+    string binary_code_format = "";
+    string extra_code_format = "";
+    int length = binary.size();
+
+    cout << "**** RESULT ****\n";
+    cout << generate_colored("Binary form: ", 2) << binary << endl;
+    binary_code_format = process_binary_number(binary, size, length, number);
+    cout << generate_colored("Direct code: ", 2) << binary_code_format << endl;
+
+    if (number < 0)
+    {
+        if (size - length < 0)
+            number_processing_mode = 0;
+        else
+        {
+            number_processing_mode = 1;
+            extra_code_format += "1";
         }
-        cout << "Direct code: " << res;
-    }else{
+
+        for (int i = number_processing_mode; i < size; ++i)
+        {
+            if (binary_code_format[i] == '0')
+                extra_code_format += '1';
+            else
+                extra_code_format += '0';
+        }
+        cout << generate_colored("Reverse code: ", 2) << extra_code_format << endl;
+        string odin = process_binary_number( "1", size, 1, 1);
+		string extra_code_final = extra_code_gen(extra_code_format, odin, size);
+		int length2 = extra_code_final.size();
+	    if (size - length2 < 0) {
+			extra_code_final = extra_code_final.erase(0, length2 - size);
+		}
+		cout << "Extra code: " << generate_colored(extra_code_final, 2) << endl;
 
     }
 }
