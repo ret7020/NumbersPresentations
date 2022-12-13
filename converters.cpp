@@ -9,8 +9,8 @@ string extra_code_gen(string s1, string base_bin, int size)
 	char sum;
 	for (int i = (size - 1); i >= 0; --i)
 	{
-		int bitLeft = s1.at(i) - '0';
-		int bitRight = base_bin.at(i) - '0';
+		int bitLeft = s1[i] - '0';
+		int bitRight = base_bin[i] - '0';
 		sum = (bitLeft ^ bitRight ^ payload) + '0';
 		result = sum + result;
 		payload = (bitLeft & payload) | (bitRight & payload) | (bitLeft & bitRight);
