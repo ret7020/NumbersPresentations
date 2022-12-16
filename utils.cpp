@@ -3,8 +3,8 @@
 #include "utils.h"
 
 string generate_colored(string base, int color_id){
-    bool FAILSAFE = false;
-    if (FAILSAFE) return base;    
+    bool FAILSAFE = true;
+    if (FAILSAFE) return base;
     string res = "";
     switch (color_id){
         case 0: // red color

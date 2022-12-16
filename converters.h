@@ -1,6 +1,7 @@
 #ifndef CONVERTERS_H_INCLUDED
 #define CONVERTERS_H_INCLUDED
 
+
 #include <iostream>
 #include <string.h>
 using namespace std;
@@ -10,4 +11,4 @@ string process_binary_number(string binary, int size, int length, int number);
 string to_binary_string(int n);
 
 
-#endif
+#endif // CONVERTERS_H_INCLUDED

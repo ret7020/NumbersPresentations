@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1670918933 source:c:\users\sch1561-it-20\desktop\string\numberscompiled\main.cpp
+	<iostream>
+	<string>
+	"utils.h"
+	"converters.h"
+
+1671186740 c:\users\sch1561-it-20\desktop\string\numberscompiled\utils.h
+	<iostream>
+	<string.h>
+
+1671186796 c:\users\sch1561-it-20\desktop\string\numberscompiled\converters.h
+	<iostream>
+	<string.h>
+
+1670918933 source:c:\users\sch1561-it-20\desktop\string\numberscompiled\converters.cpp
+	<iostream>
+	<string.h>
+	"utils.h"
+
+1671186877 source:c:\users\sch1561-it-20\desktop\string\numberscompiled\utils.cpp
+	<iostream>
+	<string.h>
+	"utils.h"
+
